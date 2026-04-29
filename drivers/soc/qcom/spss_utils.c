@@ -557,10 +557,12 @@ static long spss_utils_ioctl(struct file *file,
 			return -EINVAL;
 		}
 		ret = spss_wait_for_event(req);
-		copy_to_user((void __user *)arg, data, size);
-		if (ret < 0)
-			return ret;
-		break;
+		// 原代码
+// copy_to_user((void __user *)arg, data, size);
+
+// 修复后
+if (copy_to_user((void __user *)arg, data, size))
+    return -EFAULT;
 
 	case SPSS_IOC_SIGNAL_EVENT:
 		/* check input params */
@@ -569,10 +571,13 @@ static long spss_utils_ioctl(struct file *file,
 			return -EINVAL;
 		}
 		ret = spss_signal_event(req);
-		copy_to_user((void __user *)arg, data, size);
-		if (ret < 0)
-			return ret;
-		break;
+		// 原代码
+// copy_to_user((void __user *)arg, data, size);
+
+// 修复后
+if (copy_to_user((void __user *)arg, data, size))
+    return -EFAULT;
+
 
 	case SPSS_IOC_IS_EVENT_SIGNALED:
 		/* check input params */
@@ -581,10 +586,13 @@ static long spss_utils_ioctl(struct file *file,
 			return -EINVAL;
 		}
 		ret = spss_is_event_signaled(req);
-		copy_to_user((void __user *)arg, data, size);
-		if (ret < 0)
-			return ret;
-		break;
+		// 原代码
+// copy_to_user((void __user *)arg, data, size);
+
+// 修复后
+if (copy_to_user((void __user *)arg, data, size))
+    return -EFAULT;
+
 
 	case SPSS_IOC_SET_SSR_STATE:
 		/* check input params */
