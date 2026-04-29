@@ -1291,7 +1291,9 @@ dp_ipa_wdi_rx_smmu_params(struct dp_soc *soc,
 		RX_PKT_TLVS_LEN + L3_HEADER_PADDING;
 }
 
+__attribute__((noinline))
 QDF_STATUS dp_ipa_setup(struct cdp_soc_t *soc_hdl, uint8_t pdev_id,
+
 			void *ipa_i2w_cb, void *ipa_w2i_cb,
 			void *ipa_wdi_meter_notifier_cb,
 			uint32_t ipa_desc_size, void *ipa_priv,
