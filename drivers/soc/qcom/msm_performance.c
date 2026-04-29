@@ -913,7 +913,7 @@ void  msm_perf_events_update(enum evt_update_t update_typ,
 static int set_game_start_pid(const char *buf, const struct kernel_param *kp)
 {
 	long usr_val = 0;
-	int ret = strlen(buf);
+	return strlen(buf);
 
 	if (kstrtol(buf, 0, &usr_val)) {
     return -EINVAL;
