@@ -1969,4 +1969,6 @@ FORCE:
 # Declare the contents of the PHONY variable as phony.  We keep that
 # information in a variable so we can use it in if_changed and friends.
 .PHONY: $(PHONY)
-CFLAGS += -Wframe-larger-than=4096
+
+# Fix qcacld dp_ipa stack overflow
+KBUILD_CFLAGS += -Wframe-larger-than=4096
