@@ -31,6 +31,30 @@
 #include "dp_tx.h"
 #include "dp_rx.h"
 #include "dp_ipa.h"
+// 错误写法：栈上分配大变量（导致栈帧超限）
+char big_buffer[2048]; 
+struct ipa_cfg_struct temp_cfg[10]; 
+
+// 正确写法：动态分配（内核标准）
+#include <linux/slab.h>  // 必须包含头文件
+
+// 1. 动态分配内存
+char *big_buffer = kmalloc(2048, GFP_KERNEL);
+struct ipa_cfg_struct *temp_cfg = kmalloc(sizeof(struct ipa_cfg_struct) * 10, GFP_KERNEL);
+
+// 2. 必须判断分配是否成功
+if (!big_buffer || !temp_cfg) {
+    // 分配失败，返回错误
+    kfree(big_buffer);
+    kfree(temp_cfg);
+    return QDF_STATUS_E_NOMEM;
+}
+
+// ===== 原有业务逻辑不变 =====
+
+// 3. 函数退出前释放内存
+kfree(big_buffer);
+kfree(temp_cfg);
 
 /* Ring index for WBM2SW2 release ring */
 #define IPA_TX_COMP_RING_IDX HAL_IPA_TX_COMP_RING_IDX
