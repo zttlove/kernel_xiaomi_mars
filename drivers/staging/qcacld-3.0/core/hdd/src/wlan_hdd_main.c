@@ -16686,7 +16686,7 @@ const struct file_operations wlan_hdd_state_fops = {
 	.release = wlan_hdd_state_ctrl_param_release,
 };
 
-static int  wlan_hdd_state_ctrl_param_create(void)
+static int __used wlan_hdd_state_ctrl_param_create(void)
 {
 	unsigned int wlan_hdd_state_major = 0;
 	int ret;
