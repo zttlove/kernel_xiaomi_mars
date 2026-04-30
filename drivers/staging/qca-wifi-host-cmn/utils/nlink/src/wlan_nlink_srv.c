@@ -34,6 +34,7 @@
 #include <wlan_nlink_srv.h>
 #include <qdf_trace.h>
 #include <qdf_module.h>
+#include <net/cfg80211.h>
 
 #define WLAN_CLD80211_MAX_SIZE (SKB_WITH_OVERHEAD(8192UL) - NLMSG_HDRLEN)
 
