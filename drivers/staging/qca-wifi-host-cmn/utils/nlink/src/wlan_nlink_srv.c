@@ -371,7 +371,8 @@ static int cld80211_fill_data(struct sk_buff *msg, uint32_t portid,
 	void *hdr;
 	struct nlattr *nest;
 
-	hdr = nl80211hdr_put(msg, portid, seq, flags, cmd);
+	hdr = qca_nl80211hdr_put(msg, portid, seq, flags, cmd);
+
 	if (!hdr) {
 		QDF_TRACE(QDF_MODULE_ID_HDD, QDF_TRACE_LEVEL_ERROR,
 						"nl80211 hdr put failed");
