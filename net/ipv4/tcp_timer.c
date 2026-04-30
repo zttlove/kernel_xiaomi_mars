@@ -197,10 +197,7 @@ static void tcp_mtu_probing(struct inet_connection_sock *icsk, struct sock *sk)
 	/* Black hole detection */
 	if (!net->ipv4.sysctl_tcp_mtu_probing)
 		return;
-struct {
-    unsigned int enabled:1;  // 仅占1个bit，只能存 0 或 1
-    // 其他字段
-} icsk_mtup;
+
 	if (!icsk->icsk_mtup.enabled) {
 		icsk->icsk_mtup.enabled = 1;
 		icsk->icsk_mtup.probe_timestamp = tcp_jiffies32;
