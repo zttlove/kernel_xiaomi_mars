@@ -36,6 +36,7 @@
 #include <qdf_module.h>
 
 
+
 #define WLAN_CLD80211_MAX_SIZE (SKB_WITH_OVERHEAD(8192UL) - NLMSG_HDRLEN)
 
 #if defined(CONFIG_CNSS_LOGGER)
