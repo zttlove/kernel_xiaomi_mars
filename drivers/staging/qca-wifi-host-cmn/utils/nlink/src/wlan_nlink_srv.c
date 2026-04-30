@@ -296,7 +296,7 @@ cld80211_oem_rsp_alloc_skb(uint32_t portid, void **hdr, struct nlattr **nest,
 		return NULL;
 	}
 
-	*hdr = nl80211hdr_put(msg, portid, 0, *flags, WLAN_NL_MSG_OEM);
+	*hdr = qca_nl80211hdr_put(msg, portid, 0, *flags, WLAN_NL_MSG_OEM);
 	if (*hdr == NULL) {
 		QDF_TRACE(QDF_MODULE_ID_HDD, QDF_TRACE_LEVEL_ERROR,
 					"nl80211 hdr put failed");
